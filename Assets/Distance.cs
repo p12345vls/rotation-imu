@@ -18,8 +18,7 @@ public class Distance : MonoBehaviour
     void Start()
     {
         stream2.Open();
-    
-
+   
     }
 
 

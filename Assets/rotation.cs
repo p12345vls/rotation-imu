@@ -18,18 +18,20 @@ public class Rotation : MonoBehaviour
     void Start()
     {
        backSense  = GameObject.Find("ReceiverRotation");
-       serial.Open();
+        serial.Open();
     }
 
-    void getDistance(float range)
+ /*   void getDistance(float mill)
     {
-        millimeters = range;
-    }
+        millimeters = mill;
+    }*/
 
     // Update is called once per frame
     void Update()
     {
         //print(millimeters);
+
+
 
         if (serial.IsOpen)
         {
