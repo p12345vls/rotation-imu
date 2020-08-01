@@ -10,7 +10,7 @@ using System.Diagnostics;
 public class Rotation : MonoBehaviour
 {
 
-    SerialPort serial = new SerialPort("COM3", 115200);
+    SerialPort serial = new SerialPort("/dev/tty.usbmodem146401", 115200);
     public float millimeters;
     public GameObject backSense;
 
@@ -25,14 +25,14 @@ public class Rotation : MonoBehaviour
 
     public void setRange(string range)
     {
-        try
-        {
-            millimeters = float.Parse(range);
-        }
-        catch (System.FormatException e)
-        {
-            print(e);
-        }
+        //try
+        //{
+        //    millimeters = float.Parse(range);
+        //}
+        //catch (System.FormatException e)
+        //{
+        //    print(e);
+        //}
     }
 
     // Update is called once per frame
@@ -59,8 +59,8 @@ public class Rotation : MonoBehaviour
                     backSense.transform.localRotation = Quaternion.Lerp(backSense.transform.localRotation,
                         new Quaternion(w, x, y, z), Time.deltaTime * 15.0f);
 
-                    backSense.transform.position =  Vector3.Lerp(backSense.transform.position,
-                        new Vector3(millimeters,0, 0),5.0f *Time.deltaTime);
+                    //this.transform.position = Vector3.Lerp(this.transform.position,
+                    //    new Vector3(millimeters, 0, 0), 5.0f * Time.deltaTime);
                 }
 
 

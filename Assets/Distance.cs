@@ -7,15 +7,15 @@ using System.IO.Ports;
 
 public class Distance : MonoBehaviour
 {
-    SerialPort stream2 = new SerialPort("COM4", 115200);
+    SerialPort stream2 = new SerialPort("/dev/tty.usbmodem14301", 115200);
     public string range;
 
     public Rotation rotation;
 
-    void Awake()
-    {
-        rotation = GameObject.FindObjectOfType<Rotation>();
-    }
+    //void Awake()
+    //{
+    //    rotation = GameObject.FindObjectOfType<Rotation>();
+    //}
 
 
     /*public Vector3 rotationAngles;*/
@@ -24,7 +24,7 @@ public class Distance : MonoBehaviour
     void Start()
     {
         stream2.Open();
-   
+
     }
 
 
@@ -32,9 +32,12 @@ public class Distance : MonoBehaviour
     void Update()
     {
         range = stream2.ReadLine();
-        stream2.BaseStream.Flush(); //Clear the serial information so we assure we get new information.
 
-        rotation.setRange(range);
+        stream2.BaseStream.Flush(); //Clear the serial information so we assure we get new information.
+        print(range);
+
+
+        //rotation.setRange(range);
 
         /* float degrX = rotationAngles.x;
          float degrY = rotationAngles.y;
