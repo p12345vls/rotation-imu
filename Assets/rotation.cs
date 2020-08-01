@@ -14,24 +14,30 @@ public class Rotation : MonoBehaviour
     public float millimeters;
     public GameObject backSense;
 
+
     // Start is called before the first frame update
     void Start()
     {
-       backSense  = GameObject.Find("ReceiverRotation");
+        backSense = GameObject.Find("ReceiverRotation");
         serial.Open();
     }
 
- /*   void getDistance(float mill)
+
+    public void setRange(string range)
     {
-        millimeters = mill;
-    }*/
+        try
+        {
+            millimeters = float.Parse(range);
+        }
+        catch (System.FormatException e)
+        {
+            print(e);
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
-        //print(millimeters);
-
-
 
         if (serial.IsOpen)
         {
@@ -53,6 +59,8 @@ public class Rotation : MonoBehaviour
                     backSense.transform.localRotation = Quaternion.Lerp(backSense.transform.localRotation,
                         new Quaternion(w, x, y, z), Time.deltaTime * 15.0f);
 
+                    backSense.transform.position =  Vector3.Lerp(backSense.transform.position,
+                        new Vector3(millimeters,0, 0),5.0f *Time.deltaTime);
                 }
 
 

@@ -9,8 +9,14 @@ public class Distance : MonoBehaviour
 {
     SerialPort stream2 = new SerialPort("COM4", 115200);
     public string range;
-    
-   
+
+    public Rotation rotation;
+
+    void Awake()
+    {
+        rotation = GameObject.FindObjectOfType<Rotation>();
+    }
+
 
     /*public Vector3 rotationAngles;*/
 
@@ -22,18 +28,13 @@ public class Distance : MonoBehaviour
     }
 
 
- /*   public void eulerRotation(Vector3 v)
-    {
-        rotationAngles = v;
-    }*/
-
     // Update is called once per frame
     void Update()
     {
         range = stream2.ReadLine();
         stream2.BaseStream.Flush(); //Clear the serial information so we assure we get new information.
 
-        /*GameObject.Find("Rotation").SendMessage("getDistance", range);*/
+        rotation.setRange(range);
 
         /* float degrX = rotationAngles.x;
          float degrY = rotationAngles.y;
